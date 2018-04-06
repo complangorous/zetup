@@ -14,6 +14,7 @@ import argparse
 # The purpose of this function is to extract the import statements from
 # a list of plain text file lines, correct naming conventions to avoid
 # pip errors, and exclude packages already in the standard library.
+
 def extract_import_statements(lines):
 	
 	# Add lines to new list if they begin with the 
@@ -43,14 +44,14 @@ def read_function_file_contents(f):
         # lines into a list.
 
         if f[0] == '/':    # File argument _does_ contain the absolute path ...
-                lines = open(f).readlines()
+                function_file = open(f)
+                lines = function_file.readlines()
 
         else:                   # File argument _does not_ contain the absolute path ...
-                test_file = f
-                path_to_file = os.path.dirname(os.path.abspath(test_file))
-                lines = open('{0}/{1}'.format(path_to_file,
-					      test_file)).readlines()
-
+                path_to_file = os.path.dirname(os.path.abspath(f))
+                function_file = open('{0}/{1}'.format(path_to_file, f))
+                lines = function_file.readlines()
+        function_file.close()
         return lines
 
 def main():

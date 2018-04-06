@@ -21,5 +21,7 @@ echo Installing awscli and zappa ...
 pip install awscli zappa
 printf "\n Configuring aws certs ...\n\n"
 aws configure set default.ca_bundle /etc/ssl/certs/ca-certificates.crt
+printf "\n Initiating Zappa ... \n\n"
+zappa init
 printf "\n Done.\n\n"
 deactivate
